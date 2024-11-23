@@ -18,16 +18,16 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.ca-central-1.amazonaws.com
+          aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin 325583868777.dkr.ecr.ca-central-1.amazonaws.com
 
       - name: Build Docker Image
         run: |
           docker build -t dp012-app .
-          docker tag dp012-app:latest <aws_account_id>.dkr.ecr.ca-central-1.amazonaws.com/dp012-app-repo:latest
+          docker tag dp012-app:latest 325583868777.dkr.ecr.ca-central-1.amazonaws.com/dp012-app-repo:latest
 
       - name: Push Docker Image to ECR
         run: |
-          docker push <aws_account_id>.dkr.ecr.ca-central-1.amazonaws.com/dp012-app-repo:latest
+          docker push 325583868777.dkr.ecr.ca-central-1.amazonaws.com/dp012-app-repo:latest
 
   update_deployment:
     runs-on: ubuntu-latest
