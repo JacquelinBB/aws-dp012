@@ -40,6 +40,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Verificar o funcionamento do kubectl
+      - name: Verify kubectl context
+        run: |
+          kubectl config view
+          kubectl get nodes
+
       # 1. Configure o kubectl para acessar o cluster EKS
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
